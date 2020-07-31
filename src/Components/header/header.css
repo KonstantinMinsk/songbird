@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    flex-direction: column;
+}
+.top-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.header .logo {
+    background-image: url(../../img/logo.svg);
+    width: 200px;
+    height: 55px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.pagination {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #008966;
+}
+.page-link {
+    line-height: 1.75rem;
+}
+
+.page-item .page-link {
+    background-color: #008966;
+    border-color: #007c5d;
+}
+
+.page-item:hover .page-link:hover {
+    background-color: #00bc8c;
+    border-color: #00bc8c;
+}
+
+.page-item .page-link {
+    border-radius: 0.3rem;
+}
+
+@media (max-width: 991px) { 
+    .pagination {
+        justify-content: center;
+    }
+ }
