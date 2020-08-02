@@ -53,9 +53,9 @@
     box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
     cursor: pointer;
 }
-.timebar-circle {
-    left: 0%;
-}
+/* .timebar-circle {
+    left: 15%;
+} */
 .timebar-time-info {
     margin-top: 8px;
     font-size: 11px;

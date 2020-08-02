@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './item-list.css'
+import birdsData from '../../Service/data';
+import Spinner from '../spinner/spinner'
+export default class ItemList extends Component {
 
-const ItemList = () => {
-    return (
-        <div className="col-md-6">
-            <ul className="item-list list-group">
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-                <li className="list-group-item"><span class="li-btn"></span>Зяблик</li>
-            </ul>
-        </div>
-    )
+    state = {
+        id: 2,
+        birdsList: null
+    }
+
+    componentDidMount() {
+        const { id } = this.state;
+        const birds = birdsData[id]
+        this.setState({
+            birdsList: birds,
+        })
+    }
+
+    renderItem(arr) {
+        return arr.map(bird => {
+            const { id, name } = bird;
+            return (
+                <li className="list-group-item" key={id} onClick={ () => this.props.onItemSelected(id) } >
+                    <span className="li-btn"></span>
+                    { name }
+                </li>
+            )
+        })
+    }
+
+    render() {
+        const { birdsList } = this.state;        
+        if(!birdsList) {
+            return <Spinner />
+        }
+        const birds = this.renderItem(birdsList);
+
+        return (
+            <div className="col-md-6">
+                <ul className="item-list list-group">
+                   { birds }
+                </ul>
+            </div>
+        )
+    }
 }
-export default ItemList;

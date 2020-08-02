@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from '../header/header';
 import RandomBird from '../random-bird/random-bird';
 import ItemList from '../item-list/item-list';
 import BirdDetails from '../bird-details/bird-details';
 
-const App = () => {
-    return (
-        <React.Fragment>
-            <Header />
-            <RandomBird />
-            <div className='row'>
-                <ItemList />
-                <BirdDetails />
-            </div>
-        </React.Fragment>
-    )
-}
+export default class App extends Component {
 
-export default App
+    state = {
+        selectedBird: null,
+
+    }
+
+    onBirdSelected = (id) => {
+        this.setState({
+            selectedBird: id,
+        })
+    }
+
+    render() {
+
+        const { selectedBird } = this.state;
+        return (
+            <React.Fragment>
+                <Header />
+                <RandomBird />
+                <div className='row'>
+                    <ItemList onItemSelected={this.onBirdSelected} />
+                    <BirdDetails birdId={selectedBird} />
+                </div>
+            </React.Fragment>
+        )
+    }
+}
