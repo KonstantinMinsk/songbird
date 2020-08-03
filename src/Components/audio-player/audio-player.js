@@ -13,8 +13,8 @@ const time = (duration) => {
             duration-=duration;
         }
     }
-    s < 10 ? (s = `0${s}`) : s = s
-    m >= 10 ? m=m : (m = `0${m}`)
+    (s < 10) ? (s = `0${s}`) : (s+=0);
+    (m >= 10) ? (m+=0) : (m = `0${m}`);
     return { m: `${m}`, s: `${s}`}
 }
 
@@ -28,7 +28,6 @@ export default class AudioPlayer extends Component {
         songDuration: { m: '00', s: '00'},
         playPercent: 0,
         currentTime: { m: '00', s: '00'},
-        audio: null
     }
 
     componentDidMount()  {
@@ -40,14 +39,12 @@ export default class AudioPlayer extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.name !== prevProps.name) {
           this.setState({
-            player: null,
             playMode: true,
             lengthTimeBar: null,
             currentTimePlayer: null,
             songDuration: { m: '00', s: '00'},
             playPercent: 0,
             currentTime: { m: '00', s: '00'},
-            audio: null
           })
         }
       }

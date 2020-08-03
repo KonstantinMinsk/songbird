@@ -24,8 +24,8 @@ export default class BirdDetails extends Component {
       }
 
     updateBird() {
-        const { birdId } = this.props;
-        const bird = birdsData[0][birdId-1];
+        const { birdId, numberList } = this.props;
+        const bird = birdsData[numberList][birdId-1];
         this.setState({ 
             bird: bird,
             loading: false
@@ -48,7 +48,7 @@ export default class BirdDetails extends Component {
 
 const ViewBird = ({ bird }) => {
        
-    const { id, name, species, description, image, audio } = bird
+    const { name, species, description, image, audio } = bird
     
     return (
         <div className="bird-details card">
@@ -58,10 +58,10 @@ const ViewBird = ({ bird }) => {
                     <li className="list-group-item"><h4> { name } </h4></li>
                     <li className="list-group-item"><span> { species } </span></li>
                     <li className="list-group-item">
-                        <AudioPlayer audio={ audio } name={ name } />
                     </li>
                 </ul>
             </div>
+            <AudioPlayer audio={ audio } name={ name } />
             <span className="bird-description">
                 { description } 
             </span>

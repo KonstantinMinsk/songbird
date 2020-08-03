@@ -5,13 +5,13 @@ import Spinner from '../spinner/spinner'
 export default class ItemList extends Component {
 
     state = {
-        id: 0,
-        birdsList: null
+        idList: 0,
+        birdsList: null,
     }
 
     componentDidMount() {
-        const { id } = this.state;
-        const birds = birdsData[id]
+        const { idList } = this.state;
+        const birds = birdsData[idList]
         this.setState({
             birdsList: birds,
         })
@@ -22,8 +22,12 @@ export default class ItemList extends Component {
             const { id, name } = bird;
 
             return (
-                <li className="list-group-item" key={id} onClick={ () => this.props.onItemSelected(id) } >
-                    <span className="li-btn"></span>
+                <li className="list-group-item" 
+                    id={id}
+                    key={id} 
+                    onClick={ () => this.props.onItemSelected(id) }
+                >
+                    <span className={`li-btn`}></span>
                     { name }
                 </li>
             )

@@ -15,9 +15,9 @@
     -webkit-transition: .1s;
     transition: .1s;
 }
-.error .li-btn {
+.error {
     background-color: #d62c1a;
 }
-.success .li-btn {
+.success {
     background-color: #00bc8c;
 }

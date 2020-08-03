@@ -6,7 +6,6 @@ import birdsData from '../../Service/data';
 export default class RandomBird extends Component {
 
     state = {
-        id: 4,
         name: null,
         image: null,
     }
@@ -17,8 +16,8 @@ export default class RandomBird extends Component {
 
       
     updateBird() {
-        const { id } = this.state;
-        const bird = birdsData[4][id];
+        const { numberList, randomId } = this.props;
+        const bird = birdsData[numberList][randomId];
         this.setState({
             name: bird.name,
             image: bird.image,
@@ -34,7 +33,7 @@ export default class RandomBird extends Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><h3> { name } </h3></li>
                         <li className="list-group-item">
-                            <AudioPlayer />
+                            {/* <AudioPlayer /> */}
                         </li>
                     </ul>
                 </div>

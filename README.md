@@ -15,3 +15,6 @@ Add Spinner, refactoring components - RandomBird, ItemList
 ### Refactor component - BirdDetails add componentDidUpdate(prevProps)
 check props, when choose a new bird (this.props.nameProps !== prevProps.nameProps)
 fix AudioPlayer - componentDidUpdate(prevProps) reset state
+
+### Refactor: component App add in state { spanColor }
+onClick -> fn() { el.classList.add(spanColor) }
