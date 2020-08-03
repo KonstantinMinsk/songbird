@@ -28,6 +28,7 @@ export default class AudioPlayer extends Component {
         songDuration: { m: '00', s: '00'},
         playPercent: 0,
         currentTime: { m: '00', s: '00'},
+        audio: null
     }
 
     componentDidMount()  {
@@ -35,6 +36,21 @@ export default class AudioPlayer extends Component {
             player: document.querySelector('#player'),
         })
     }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.name !== prevProps.name) {
+          this.setState({
+            player: null,
+            playMode: true,
+            lengthTimeBar: null,
+            currentTimePlayer: null,
+            songDuration: { m: '00', s: '00'},
+            playPercent: 0,
+            currentTime: { m: '00', s: '00'},
+            audio: null
+          })
+        }
+      }
 
     timeUpdate = (currentTime, duration) => {
         let playPercent = 100 * (currentTime / duration);
@@ -65,8 +81,6 @@ export default class AudioPlayer extends Component {
     }
 
     render() {
-        const { audio } = this.props;
-        
         const { playMode, playPercent: p, songDuration: { m, s }, currentTime: { m : M, s: S } } = this.state;  
 
         const playButtonSVG = playMode 
@@ -80,7 +94,7 @@ export default class AudioPlayer extends Component {
         return (
             <div className="audio-player">
                 <audio 
-                    src={ audio } 
+                    src={ this.props.audio } 
                     hidden=""
                     id="player">
                 </audio>

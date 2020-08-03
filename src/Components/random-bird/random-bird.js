@@ -9,7 +9,6 @@ export default class RandomBird extends Component {
         id: 4,
         name: null,
         image: null,
-        audio: null,
     }
 
     componentDidMount() {
@@ -23,7 +22,6 @@ export default class RandomBird extends Component {
         this.setState({
             name: bird.name,
             image: bird.image,
-            audio: bird.audio,
         })        
       }
 
@@ -36,7 +34,7 @@ export default class RandomBird extends Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><h3> { name } </h3></li>
                         <li className="list-group-item">
-                            <AudioPlayer audio={ audio } />
+                            <AudioPlayer />
                         </li>
                     </ul>
                 </div>

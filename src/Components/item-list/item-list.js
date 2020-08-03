@@ -5,7 +5,7 @@ import Spinner from '../spinner/spinner'
 export default class ItemList extends Component {
 
     state = {
-        id: 2,
+        id: 0,
         birdsList: null
     }
 
@@ -20,6 +20,7 @@ export default class ItemList extends Component {
     renderItem(arr) {
         return arr.map(bird => {
             const { id, name } = bird;
+
             return (
                 <li className="list-group-item" key={id} onClick={ () => this.props.onItemSelected(id) } >
                     <span className="li-btn"></span>

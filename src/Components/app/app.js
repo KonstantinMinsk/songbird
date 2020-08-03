@@ -8,7 +8,6 @@ export default class App extends Component {
 
     state = {
         selectedBird: null,
-
     }
 
     onBirdSelected = (id) => {
@@ -23,7 +22,7 @@ export default class App extends Component {
         return (
             <React.Fragment>
                 <Header />
-                <RandomBird />
+                {/* <RandomBird /> */}
                 <div className='row'>
                     <ItemList onItemSelected={this.onBirdSelected} />
                     <BirdDetails birdId={selectedBird} />

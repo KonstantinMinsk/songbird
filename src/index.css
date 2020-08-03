@@ -13,3 +13,7 @@ body {
   padding-left: 15px;
   margin: 2rem auto;
 }
+
+.info {
+  text-align: center;
+}
