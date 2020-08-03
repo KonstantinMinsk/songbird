@@ -9,7 +9,7 @@ const Header = () => {
                 <h3>Score: <span className='score'>0</span></h3>
             </div>
             <ul className='pagination'>
-                <li className='page-item'>
+                <li className='page-item active'>
                     <a className='page-link' href='#'> Разминка </a>
                 </li>
                 <li className='page-item'>

@@ -35,6 +35,12 @@
 }
 
 .page-item:hover .page-link:hover {
+    background-color: #00efb2;
+    border-color: #00bc8c;
+    color: #007558;
+}
+
+.page-item.active .page-link {
     background-color: #00bc8c;
     border-color: #00bc8c;
 }
