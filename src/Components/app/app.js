@@ -13,12 +13,33 @@ export default class App extends Component {
         selectedBird: null,
         numberList: 0,
         randomId: Math.floor(Math.random()*6),
+        score: 0,
+        s: 5,
+    }
+
+    componentDidUpdate() {
+
     }
     
+    onCurrentScore = (id) => {
+        const { randomId, s } = this.state;
+        if (randomId+1 !== id) {
+            this.setState({
+                s: s-1,
+            })
+        } else {
+            this.setState({
+                score: s,
+            })
+        }
+    }
+
     onBirdSelected = (id) => {
-        const { randomId } = this.state;
+        const { randomId, s } = this.state;
+        
         const spanColor = (randomId+1 == id) ? 'success' : 'error';
         const btnColor  = (randomId+1 == id) ? 'btn-next' : null;
+        this.onCurrentScore(id)
         this.setState({
             selectedBird: id,
         })
@@ -28,11 +49,11 @@ export default class App extends Component {
 
     render() {
 
-        const { selectedBird, numberList, randomId } = this.state;
+        const { selectedBird, numberList, randomId, score } = this.state;
         
         return (
             <React.Fragment>
-                <Header />
+                <Header score={ score } />
                 <RandomBird numberList={ numberList } 
                             randomId={ randomId }  
                             birdId={ selectedBird }/>

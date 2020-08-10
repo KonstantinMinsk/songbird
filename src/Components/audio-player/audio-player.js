@@ -86,8 +86,7 @@ export default class AudioPlayer extends Component {
                                 :  <svg viewBox="0 0 47.607 47.607"><path fill="#00bc8c" d="M17.991 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345zM42.877 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345z"></path></svg>
         const timeBarStyle = { 
             background: `linear-gradient(to right, rgb(0, 188, 140) 0%, 
-                        rgb(61, 133, 140) ${p}%, rgb(115, 115, 115) ${p}%, rgb(115, 115, 115) 100%)`
-        };
+                        rgb(61, 133, 140) ${p}%, rgb(115, 115, 115) ${p}%, rgb(115, 115, 115) 100%)` };
 
         const { audioLink } = this.props;
 
