@@ -37,15 +37,16 @@ export default class AudioPlayer extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.name !== prevProps.name) {
-          this.setState({
-            playMode: true,
-            lengthTimeBar: null,
-            currentTimePlayer: null,
-            songDuration: { m: '00', s: '00'},
-            playPercent: 0,
-            currentTime: { m: '00', s: '00'},
-          })
+        if( this.props.name !== prevProps.name || 
+            this.props.audioLink !== prevProps.audioLink) {
+                this.setState({
+                    playMode: true,
+                    lengthTimeBar: null,
+                    currentTimePlayer: null,
+                    songDuration: { m: '00', s: '00'},
+                    playPercent: 0,
+                    currentTime: { m: '00', s: '00'},
+                })
         }
       }
 
@@ -88,10 +89,12 @@ export default class AudioPlayer extends Component {
                         rgb(61, 133, 140) ${p}%, rgb(115, 115, 115) ${p}%, rgb(115, 115, 115) 100%)`
         };
 
+        const { audioLink } = this.props;
+
         return (
             <div className="audio-player">
                 <audio 
-                    src={ this.props.audio } 
+                    src={ audioLink } 
                     hidden=""
                     id="player">
                 </audio>

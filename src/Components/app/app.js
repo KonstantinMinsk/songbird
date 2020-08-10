@@ -28,15 +28,17 @@ export default class App extends Component {
 
     render() {
 
-        const { selectedBird, numberList, randomId, btnColor } = this.state;
+        const { selectedBird, numberList, randomId } = this.state;
         
         return (
             <React.Fragment>
                 <Header />
-                <RandomBird numberList={ numberList } randomId={randomId}  birdId={selectedBird}/>
+                <RandomBird numberList={ numberList } 
+                            randomId={ randomId }  
+                            birdId={ selectedBird }/>
                 <div className='row'>
-                    <ItemList onItemSelected={this.onBirdSelected} />
-                    <BirdDetails birdId={selectedBird} numberList={ numberList } />
+                    <ItemList onItemSelected={ this.onBirdSelected } />
+                    <BirdDetails birdId={ selectedBird } numberList={ numberList } />
                 </div>
                 <button className="btn" id="btn">Next Level</button>
             </React.Fragment>

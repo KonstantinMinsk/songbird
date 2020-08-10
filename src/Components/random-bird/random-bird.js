@@ -6,9 +6,12 @@ import birdsData from '../../Service/data';
 
 export default class RandomBird extends Component {
 
+    bird = birdsData[this.props.numberList][this.props.randomId];
+
     state = {
         name: '*****',
         image: icon,
+        audio: this.bird.audio,
     }
 
     componentDidMount() {
@@ -23,14 +26,15 @@ export default class RandomBird extends Component {
 
       
     updateBird() {
+        
         const { numberList, randomId, birdId } = this.props;
         if(randomId+1 !== birdId) {
             return
         }
-        const bird = birdsData[numberList][randomId];
+
         this.setState({
-            name: bird.name,
-            image: bird.image,
+            name: this.bird.name,
+            image: this.bird.image,
         })        
       }
 
@@ -44,7 +48,9 @@ export default class RandomBird extends Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><h3> { name } </h3></li>
                         <li className="list-group-item">
-                            {/* <AudioPlayer /> */}
+                            <AudioPlayer 
+                                audioLink={ audio } 
+                                />
                         </li>
                     </ul>
                 </div>

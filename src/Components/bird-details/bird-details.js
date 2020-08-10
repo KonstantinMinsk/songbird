@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './bird-details.css'
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
+import { render } from '@testing-library/react';
 
 export default class BirdDetails extends Component {
 
@@ -35,7 +36,9 @@ export default class BirdDetails extends Component {
     render() {
         
         const { bird } = this.state;
-        const content = !bird ? <Info /> : <ViewBird bird={bird} />
+        const content = !bird 
+                            ? <Info /> 
+                            : <ViewBird bird={bird} />
         return (
             <div className='col-md-6'>
                 <div className="bird-details card">
@@ -61,7 +64,10 @@ const ViewBird = ({ bird }) => {
                     </li>
                 </ul>
             </div>
-            <AudioPlayer audio={ audio } name={ name } />
+            <AudioPlayer  
+                         name={ name }
+                         audioLink={ audio } 
+                         />
             <span className="bird-description">
                 { description } 
             </span>
