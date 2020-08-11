@@ -3,6 +3,7 @@ import './bird-details.css'
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
 import { render } from '@testing-library/react';
+import ErrorBoundary from '../error-boundary/error-boundary';
 
 export default class BirdDetails extends Component {
 
@@ -54,24 +55,26 @@ const ViewBird = ({ bird }) => {
     const { name, species, description, image, audio } = bird
     
     return (
-        <div className="bird-details card">
-            <div className='d-flex flex-wrap'>
-                <img className="bird-image" src={ image } alt={ name }/>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item"><h4> { name } </h4></li>
-                    <li className="list-group-item"><span> { species } </span></li>
-                    <li className="list-group-item">
-                    </li>
-                </ul>
+        <ErrorBoundary>
+            <div className="bird-details card">
+                <div className='d-flex flex-wrap'>
+                    <img className="bird-image" src={ image } alt={ name }/>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><h4> { name } </h4></li>
+                        <li className="list-group-item"><span> { species } </span></li>
+                        <li className="list-group-item">
+                        </li>
+                    </ul>
+                </div>
+                <AudioPlayer  
+                            name={ name }
+                            audioLink={ audio } 
+                            />
+                <span className="bird-description">
+                    { description } 
+                </span>
             </div>
-            <AudioPlayer  
-                         name={ name }
-                         audioLink={ audio } 
-                         />
-            <span className="bird-description">
-                { description } 
-            </span>
-        </div>
+        </ErrorBoundary>
     )
 }
 

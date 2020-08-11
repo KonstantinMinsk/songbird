@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './random-bird.css';
-import icon from './bird.jpg';
+import icon from '../../img/bird.jpg';
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
+import ErrorBoundary from '../error-boundary/error-boundary';
 
 export default class RandomBird extends Component {
 
@@ -39,9 +40,9 @@ export default class RandomBird extends Component {
       }
 
     render() {
-        const { name, image, audio } = this.state;    
+        const { name, image, audio } = this.state;  
         
-        return (
+        const randomBird = (
             <div className="random-bird jumbotron rounded">
                 <img className="bird-image" src={ image } alt={ name }></img>
                 <div>
@@ -55,6 +56,12 @@ export default class RandomBird extends Component {
                     </ul>
                 </div>
             </div>
+        )
+        
+        return (
+            <ErrorBoundary>
+                { randomBird }
+            </ErrorBoundary>
         )
     }
 }

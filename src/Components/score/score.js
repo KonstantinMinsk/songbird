@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorBoundary from '../error-boundary/error-boundary';
 
 class Score extends Component {
 
@@ -12,7 +13,9 @@ class Score extends Component {
         const { score } = this.props;
 
         return (
-            <h3>Score: <span className='score'> { score } </span></h3>
+            <ErrorBoundary>
+                <h3>Score: <span className='score'> { score } </span></h3>
+            </ErrorBoundary>
         )
     }
 }

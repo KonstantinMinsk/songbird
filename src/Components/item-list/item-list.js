@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './item-list.css'
 import birdsData from '../../Service/data';
 import Spinner from '../spinner/spinner'
+import ErrorBoundary from '../error-boundary/error-boundary';
 export default class ItemList extends Component {
 
     state = {
@@ -42,11 +43,13 @@ export default class ItemList extends Component {
         const birds = this.renderItem(birdsList);
 
         return (
-            <div className="col-md-6">
-                <ul className="item-list list-group">
-                   { birds }
-                </ul>
-            </div>
+            <ErrorBoundary>
+                <div className="col-md-6">
+                    <ul className="item-list list-group">
+                    { birds }
+                    </ul>
+                </div>
+            </ErrorBoundary>
         )
     }
 }

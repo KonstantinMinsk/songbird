@@ -5,6 +5,7 @@ import Header from '../header/header';
 import RandomBird from '../random-bird/random-bird';
 import ItemList from '../item-list/item-list';
 import BirdDetails from '../bird-details/bird-details';
+import ErrorBoundary from '../error-boundary/error-boundary';
 
 
 export default class App extends Component {
@@ -15,10 +16,7 @@ export default class App extends Component {
         randomId: Math.floor(Math.random()*6),
         score: 0,
         s: 5,
-    }
-
-    componentDidUpdate() {
-
+        disabled: true,
     }
     
     onCurrentScore = (id) => {
@@ -30,12 +28,13 @@ export default class App extends Component {
         } else {
             this.setState({
                 score: s,
+                disabled: false
             })
         }
     }
 
     onBirdSelected = (id) => {
-        const { randomId, s } = this.state;
+        const { randomId } = this.state;
         
         const spanColor = (randomId+1 == id) ? 'success' : 'error';
         const btnColor  = (randomId+1 == id) ? 'btn-next' : null;
@@ -47,10 +46,20 @@ export default class App extends Component {
         document.querySelector('.btn').classList.add(`${btnColor}`)
     }
 
+    onNextQuiz = () => {
+        const { score, numberList } = this.state;
+        let s = score+5;
+        let n = numberList+1;
+        this.setState({
+            numberList: n,
+            s: s,
+        })
+    }
+
     render() {
 
-        const { selectedBird, numberList, randomId, score } = this.state;
-        
+        const { selectedBird, numberList, randomId, score, disabled } = this.state;
+
         return (
             <React.Fragment>
                 <Header score={ score } />
@@ -61,7 +70,14 @@ export default class App extends Component {
                     <ItemList onItemSelected={ this.onBirdSelected } />
                     <BirdDetails birdId={ selectedBird } numberList={ numberList } />
                 </div>
-                <button className="btn" id="btn">Next Level</button>
+                <ErrorBoundary>
+                    <button className="btn" 
+                            id="btn"
+                            onClick={ () => this.onNextQuiz() }
+                            disabled={ disabled } 
+                        > Next Level
+                    </button>
+                </ErrorBoundary>
             </React.Fragment>
         )
     }
