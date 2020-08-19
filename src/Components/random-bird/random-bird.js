@@ -4,6 +4,7 @@ import icon from '../../img/bird.jpg';
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
 import ErrorBoundary from '../error-boundary/error-boundary';
+import AudioTrack from '../audio-track/audio-track';
 
 export default class RandomBird extends Component {
 
@@ -12,32 +13,47 @@ export default class RandomBird extends Component {
     state = {
         name: '*****',
         image: icon,
-        audio: this.bird.audio,
+        audio: null,
     }
 
     componentDidMount() {
-        // this.updateBird();
+        this.renderBird();
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.birdId !== prevProps.birdId ) {
-          this.updateBird();
+        const { win } = this.props;
+        if(this.props.win !== prevProps.win) {
+            !win ? this.resetBird() : this.updateBird(); 
         }
-      }
+    }
 
+    renderBird() {
+        const { numberList, randomId } = this.props;
+        const bird = birdsData[numberList][randomId];
+        this.setState({ 
+            audio: bird.audio,
+         }) 
+    }
       
     updateBird() {
-        
         const { numberList, randomId, birdId } = this.props;
+        const bird = birdsData[numberList][randomId];
         if(randomId+1 !== birdId) {
             return
         }
-
         this.setState({
-            name: this.bird.name,
-            image: this.bird.image,
+            name: bird.name,
+            image: bird.image,
         })        
-      }
+    }
+
+    resetBird() {
+        this.setState({
+            name: '*****',
+            image: icon,
+            audio: null,
+        })        
+    }
 
     render() {
         const { name, image, audio } = this.state;  
@@ -49,9 +65,17 @@ export default class RandomBird extends Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><h3> { name } </h3></li>
                         <li className="list-group-item">
-                            <AudioPlayer 
-                                audioLink={ audio } 
-                                />
+                            <AudioPlayer audioLink={ audio }>
+                                {/* <AudioTrack audioLink={ audio }/> */}
+                            </AudioPlayer>    
+                            {/* { this.props.children } */}
+                            {/* <AudioPlayer>
+                                {
+                                    React.Children.map(this.props.children, (child) => {
+                                        return React.cloneElement(child, { audioLink })
+                                    })
+                                }
+                            </AudioPlayer> */}
                         </li>
                     </ul>
                 </div>

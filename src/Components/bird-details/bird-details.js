@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import './bird-details.css'
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
-import { render } from '@testing-library/react';
 import ErrorBoundary from '../error-boundary/error-boundary';
+import AudioTrack from '../audio-track/audio-track';
 
 export default class BirdDetails extends Component {
 
@@ -35,11 +35,38 @@ export default class BirdDetails extends Component {
       }
 
     render() {
-        
         const { bird } = this.state;
+        // const audioLink = !bird ? null : bird.audio
+        // const viewBird = !bird
+        //                  ? null 
+        //                  : ( 
+        //     <ErrorBoundary>
+        //         <div className="bird-details card">
+        //             <div className='d-flex flex-wrap'>
+        //                 <img className="bird-image" src={ bird['image'] } alt={ bird.name }/>
+        //                 <ul className="list-group list-group-flush">
+        //                     <li className="list-group-item"><h4> { bird.name } </h4></li>
+        //                     <li className="list-group-item"><span> { bird.species } </span></li>
+        //                     <li className="list-group-item">
+        //                     </li>
+        //                 </ul>
+        //             </div>
+        //             {
+        //                 React.Children.map(this.props.children, child => {
+        //                     return React.cloneElement(child)
+        //                 })
+        //             }
+        //             <span className="bird-description">
+        //                 { bird.description } 
+        //             </span>
+        //         </div>
+        //     </ErrorBoundary>
+        //     )
+
         const content = !bird 
                             ? <Info /> 
                             : <ViewBird bird={bird} />
+                            // : { viewBird }
         return (
             <div className='col-md-6'>
                 <div className="bird-details card">
@@ -52,7 +79,7 @@ export default class BirdDetails extends Component {
 
 const ViewBird = ({ bird }) => {
        
-    const { name, species, description, image, audio } = bird
+    const { name, species, description, image, audio: audioLink } = bird;
     
     return (
         <ErrorBoundary>
@@ -66,10 +93,14 @@ const ViewBird = ({ bird }) => {
                         </li>
                     </ul>
                 </div>
-                <AudioPlayer  
-                            name={ name }
-                            audioLink={ audio } 
-                            />
+                <AudioPlayer audioLink={ audioLink } >
+                    <AudioTrack audioLink={ audioLink }/>
+                </AudioPlayer>
+                {/* {
+                    React.Children.map(this.props.children, child => {
+                        return React.cloneElement(child, { audioLink })
+                    })
+                } */}
                 <span className="bird-description">
                     { description } 
                 </span>

@@ -21,3 +21,6 @@ onClick -> fn() { el.classList.add(spanColor) }
 
 ### Create ErrorIndicator & ErrorBoundary (add ErrorIndicator)
 add ErrorBoundary in each React Components
+
+### Fix error in ItemList & RandomBird
+add componentDidUpdate(prevProps)

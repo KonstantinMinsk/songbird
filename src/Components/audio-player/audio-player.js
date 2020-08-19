@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './audio-player.css'
 import ErrorBoundary from '../error-boundary/error-boundary';
+import { AudioTrack } from '../audio-track/audio-track';
 
 const time = (duration) => {
     let m = 0;
@@ -87,14 +88,19 @@ export default class AudioPlayer extends Component {
                                 :  <svg viewBox="0 0 47.607 47.607"><path fill="#00bc8c" d="M17.991 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345zM42.877 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345z"></path></svg>
 
         const { audioLink } = this.props;
-
         const audioPlayer = (
             <div className="audio-player">
-                <audio 
+                {/* <audio 
                     src={ audioLink } 
                     hidden=""
                     id="player">
-                </audio>
+                </audio> */}
+                {/* {
+                    React.Children.map(this.props.children, (child) => {
+                        return React.cloneElement(child, { audioLink })
+                    })
+                } */}
+                { this.props.children }
                 <div className="controls">
                     <div className="playback-button"
                          onClick={this.playAudio}>
