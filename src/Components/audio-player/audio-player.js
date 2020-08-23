@@ -50,7 +50,7 @@ export default class AudioPlayer extends Component {
                     currentTime: { m: '00', s: '00'},
                 })
         }
-      }
+    }
 
     timeUpdate = (currentTime, duration) => {
         let playPercent = 100 * (currentTime / duration);

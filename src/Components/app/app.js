@@ -20,7 +20,7 @@ export default class App extends Component {
         s: 6,
         disabled: true,
         win: false,
-
+        activeNavItem: 0
     }
 
     // componentDidUpdate(prevState) {
@@ -62,8 +62,9 @@ export default class App extends Component {
     }
 
     onNextStep = () => {
-        const { randomId, score, s, numberList, win } = this.state;        
+        const { randomId, score, s, numberList, win, activeNavItem } = this.state;        
         let n = numberList+1;
+        let active = activeNavItem +1;
 
         document.querySelectorAll('.li-child-color').forEach( li => li.classList.remove('error', 'success'));
         document.querySelector('.btn').classList.toggle('btn-next');
@@ -74,17 +75,20 @@ export default class App extends Component {
             score,
             s: 6,
             disabled: true,
-            win: false
+            win: false,
+            activeNavItem: active
         })
     }
 
     render() {
 
-        const { selectedBird, numberList, randomId, score, disabled, win } = this.state;
+        const { 
+            selectedBird, numberList, randomId, score, disabled, win, activeNavItem 
+        } = this.state;
 
         return (
             <React.Fragment>
-                <Header score={ score } />
+                <Header score={ score } active={ activeNavItem } />
                 <RandomBird numberList={ numberList } 
                             randomId={ randomId }  
                             birdId={ selectedBird }

@@ -6,9 +6,30 @@ import ErrorBoundary from '../error-boundary/error-boundary';
 
 class Header extends Component {
 
-    render() {
-        const { score } = this.props;
+    state = {
+        linkName: ['Разминка',  'Воробьиные', 'Лесные птицы', 'Певчие птиц', 'Хищные птицы', 'Морские птицы'],
+    }
 
+    renderMenuItemActive(arr) {
+        return arr.map( (name, i) => {
+                const { active } = this.props;
+                console.log(active, i);
+                const classes = (active == i) ? 'page-item active' : 'page-item';
+                return(
+                    <li className={ classes } key={i+1}>
+                        <a className='page-link' href='#'> { name } </a>
+                    </li>
+                )
+            })
+    }
+
+    render() {
+        const { score, active } = this.props;
+        const { linkName } = this.state;
+        // console.log(navMenu.props.children[0].props);
+
+        const navMenu = this.renderMenuItemActive(linkName);
+        
         return (
             <ErrorBoundary>
                 <div className='header'>
@@ -17,7 +38,7 @@ class Header extends Component {
                         <Score score={ score } />
                     </div>
                     <ul className='pagination'>
-                        <li className='page-item active'>
+                        {/* <li className='page-item active'>
                             <a className='page-link' href='#'> Разминка </a>
                         </li>
                         <li className='page-item'>
@@ -34,7 +55,8 @@ class Header extends Component {
                         </li>
                         <li className='page-item'>
                             <a className='page-link' href='#'> Морские птицы </a>
-                        </li>
+                        </li> */}
+                        { navMenu }
                     </ul>
                 </div>
             </ErrorBoundary>

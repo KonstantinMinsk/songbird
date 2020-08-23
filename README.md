@@ -24,3 +24,6 @@ add ErrorBoundary in each React Components
 
 ### Fix error in ItemList & RandomBird
 add componentDidUpdate(prevProps)
+
+### Refactor: component Header
+add fn renderMenuItemActive()
