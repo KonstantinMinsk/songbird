@@ -8,6 +8,7 @@ import BirdDetails from '../bird-details/bird-details';
 import ErrorBoundary from '../error-boundary/error-boundary';
 import AudioPlayer from '../audio-player/audio-player';
 import AudioTrack from '../audio-track/audio-track';
+import GameOver from '../the-end/the-end';
 
 
 export default class App extends Component {
@@ -80,11 +81,35 @@ export default class App extends Component {
         })
     }
 
+    repeatGame = () => {
+        this.setState({
+            selectedBird: null,
+            numberList: 0,
+            randomId: Math.floor(Math.random()*6),
+            score: 0,
+            s: 6,
+            disabled: true,
+            win: false,
+            activeNavItem: 0
+        })
+    }
+
     render() {
 
         const { 
             selectedBird, numberList, randomId, score, disabled, win, activeNavItem 
         } = this.state;
+
+        if(numberList === 5) { return (
+            <React.Fragment>
+                <Header score={ score } active={ activeNavItem } />
+                <GameOver score={ score }>
+                    <button className="btn btn-game-over" onClick={ () => this.repeatGame() } >
+                        Попробовать еще раз!
+                    </button>
+                </GameOver>
+            </React.Fragment>
+        )} 
 
         return (
             <React.Fragment>
@@ -104,7 +129,6 @@ export default class App extends Component {
                 </div>
                 <ErrorBoundary>
                     <button className="btn" 
-                            id="btn"
                             onClick={ () => this.onNextStep() }
                             disabled={ disabled } 
                         > Next Level

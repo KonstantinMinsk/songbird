@@ -13,7 +13,6 @@ class Header extends Component {
     renderMenuItemActive(arr) {
         return arr.map( (name, i) => {
                 const { active } = this.props;
-                console.log(active, i);
                 const classes = (active == i) ? 'page-item active' : 'page-item';
                 return(
                     <li className={ classes } key={i+1}>

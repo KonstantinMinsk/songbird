@@ -27,3 +27,5 @@ add componentDidUpdate(prevProps)
 
 ### Refactor: component Header
 add fn renderMenuItemActive()
+
+### Create component GameOver, add GameOver in App
