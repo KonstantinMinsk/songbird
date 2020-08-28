@@ -29,3 +29,7 @@ add componentDidUpdate(prevProps)
 add fn renderMenuItemActive()
 
 ### Create component GameOver, add GameOver in App
+
+### Create a second Player, because children not a work! 
+Fix components / refactoring 
+Add in players 

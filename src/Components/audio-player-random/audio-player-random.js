@@ -19,7 +19,7 @@ const time = (duration) => {
     return { m: `${m}`, s: `${s}`}
 }
 
-export default class AudioPlayer extends Component {
+export default class AudioPlayerRandom extends Component {
 
     state = {
         player: null,
@@ -33,7 +33,7 @@ export default class AudioPlayer extends Component {
 
     componentDidMount()  {
         this.setState({
-            player: document.querySelector('#player'),
+            player: document.querySelector('#playerRandom'),
         })
     }
 
@@ -64,7 +64,7 @@ export default class AudioPlayer extends Component {
                 playPercent: 0,
             })
         }
-    } 
+    }
 
     componentWillMount() {
         clearInterval(this.timePlayOneSecond)
@@ -81,7 +81,7 @@ export default class AudioPlayer extends Component {
     playAudio = () => {
         const { player, playMode } = this.state;
         
-        const lengthTimeBar = document.querySelector('.timebar-bar').offsetWidth; 
+        const lengthTimeBar = document.querySelector('.timebar-bar').offsetWidth; // ?
         const songDuration = time(Math.floor(player.duration));
         playMode === true ? player.play() : player.pause();
         
@@ -100,19 +100,13 @@ export default class AudioPlayer extends Component {
                                 :  <svg viewBox="0 0 47.607 47.607"><path fill="#00bc8c" d="M17.991 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345zM42.877 40.976a6.631 6.631 0 01-13.262 0V6.631a6.631 6.631 0 0113.262 0v34.345z"></path></svg>
 
         const { audioLink } = this.props;
-        // console.log(audioLinkRandom);
-        const audioPlayer = (
+        const audioPlayerRandom = (
             <div className="audio-player">
                 {/* <audio 
                     src={ audioLinkRandom } 
                     hidden=""
                     id="player-random">
                 </audio> */}
-                {/* {
-                    React.Children.map(this.props.children, (child) => {
-                        return React.cloneElement(child, { audioLink })
-                    })
-                } */}
                 {
                     React.Children.map(this.props.children, (child) => {
                         return React.cloneElement(child, { audioLink })
@@ -141,7 +135,7 @@ export default class AudioPlayer extends Component {
 
         return (
             <ErrorBoundary>
-                { audioPlayer }
+                { audioPlayerRandom }
             </ErrorBoundary>
         )
     }

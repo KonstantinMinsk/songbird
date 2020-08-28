@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './header.css'
 import Score from '../score/score';
-import { render } from '@testing-library/react';
 import ErrorBoundary from '../error-boundary/error-boundary';
 
 class Header extends Component {
@@ -13,7 +12,7 @@ class Header extends Component {
     renderMenuItemActive(arr) {
         return arr.map( (name, i) => {
                 const { active } = this.props;
-                const classes = (active == i) ? 'page-item active' : 'page-item';
+                const classes = (active === i) ? 'page-item active' : 'page-item';
                 return(
                     <li className={ classes } key={i+1}>
                         <a className='page-link' href='#'> { name } </a>
@@ -23,7 +22,7 @@ class Header extends Component {
     }
 
     render() {
-        const { score, active } = this.props;
+        const { score } = this.props;
         const { linkName } = this.state;
         // console.log(navMenu.props.children[0].props);
 

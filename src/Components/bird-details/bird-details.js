@@ -1,4 +1,4 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import './bird-details.css'
 import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
@@ -78,8 +78,8 @@ export default class BirdDetails extends Component {
 }
 
 const ViewBird = ({ bird }) => {
-       
     const { name, species, description, image, audio: audioLink } = bird;
+    // console.log(audioLink);
     
     return (
         <ErrorBoundary>
@@ -94,7 +94,7 @@ const ViewBird = ({ bird }) => {
                     </ul>
                 </div>
                 <AudioPlayer audioLink={ audioLink } >
-                    <AudioTrack audioLink={ audioLink }/>
+                    <AudioTrack />
                 </AudioPlayer>
                 {/* {
                     React.Children.map(this.props.children, child => {

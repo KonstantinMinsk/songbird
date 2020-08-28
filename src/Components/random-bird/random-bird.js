@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import './random-bird.css';
 import icon from '../../img/bird.jpg';
-import AudioPlayer from '../audio-player/audio-player';
 import birdsData from '../../Service/data';
 import ErrorBoundary from '../error-boundary/error-boundary';
-import AudioTrack from '../audio-track/audio-track';
 
 export default class RandomBird extends Component {
 
@@ -56,7 +54,10 @@ export default class RandomBird extends Component {
     }
 
     render() {
-        const { name, image, audio } = this.state;  
+        const { name, image, 
+            // audio: audioLink 
+        } = this.state;  
+        // const { audioLink } = this.props;
         
         const randomBird = (
             <div className="random-bird jumbotron rounded">
@@ -65,16 +66,14 @@ export default class RandomBird extends Component {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><h3> { name } </h3></li>
                         <li className="list-group-item">
-                            <AudioPlayer audioLink={ audio }>
-                                {/* <AudioTrack audioLink={ audio }/> */}
-                            </AudioPlayer>    
-                            {/* { this.props.children } */}
-                            {/* <AudioPlayer>
-                                {
-                                    React.Children.map(this.props.children, (child) => {
-                                        return React.cloneElement(child, { audioLink })
-                                    })
-                                }
+                            { this.props.children }
+                            {/* {
+                                React.Children.map(this.props.children, (child) => {
+                                    return React.cloneElement(child, { audioLink })
+                                })
+                            } */}
+                            {/* <AudioPlayer audioLink={ audioLink }>
+                                <AudioPlayerRandom />
                             </AudioPlayer> */}
                         </li>
                     </ul>
