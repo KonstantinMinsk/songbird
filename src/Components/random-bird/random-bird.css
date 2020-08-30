@@ -1,0 +1,18 @@
+.random-bird {
+    display: flex;
+    padding: 1rem;
+    margin-bottom: 25px;
+}
+.random-bird .bird-image {
+    width: 200px;
+    height: 155px;
+    border-radius: 10px;
+    margin: 0;
+}
+.random-bird>div {
+    width: calc(100% - 280px);
+    margin: 0;
+}
+.random-bird .list-group {
+    margin-left: 40px;
+}

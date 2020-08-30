@@ -1,0 +1,29 @@
+.btn {
+    width: 100%;
+    margin: 25px 0px;
+    background-color: #303030;
+    border: 1px solid #444;
+    color: #fff!important;
+    cursor: auto;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.btn-next {
+    background-color: #00bc8c;
+    cursor: pointer;
+}
+
+.btn-next:hover {
+    background-color: #00efb2;
+}
+
+.btn-game-over {
+    padding: 15px;
+    margin: 25px 0;
+    background-color: #008966;
+}
+
+.btn-game-over:hover {
+    background-color: #00efb2;
+}
