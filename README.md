@@ -1,3 +1,5 @@
+Deploy: https://konstantinminsk-songbird.netlify.app
+
 # Songbird App
 
 ### Client Api - birdsData = { } data.js
